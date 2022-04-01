@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "dat520/lab2/quiz/proto";
+
+import "proto/base.proto";
+import "gorums.proto";
+
+service QuizMaster {
+  // Answer RPC is called by the quizmaster to send the questions to
+  // the ready participants and the response is handled as the
+  // quorum function
+  rpc Answer(Question) returns (ParticipantAnswer) {
+    option (gorums.quorumcall) = true;
+  }
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "dat520/lab2/quiz/proto";
+
+message Question {
+  // id is the id of the question
+  int32 id = 1;
+  // questionText contains the text of the question
+  string questionText = 2;
+  // answerText contains four options out of which one is correct
+  repeated string answerText = 3;
+  // correctAnswer is the correct option and only know to quizmaster
+  // should be set to -1 while sending it to the participant
+  int32 correctAnswer = 4;
+  // isLastQuestion is set to true by the quizmaster if the question
+  // is the last question of the quiz
+  bool isLastQuestion = 5;
+}
+
+message Participant {
+  // name contains the name of the participant
+  string name = 1;
+  // score is the score of the participant
+  int32 score = 2;
+  // address is the gorums server address launched by the participant
+  string address = 3;
+}
+
+// This message is sent as response to the "Answer" rpc
+message ParticipantAnswer {
+  // question_id is the id of the question for which the answer is sent
+  int32 question_id = 1;
+  // answer is the index into the answerText slice
+  int32 answer = 2;
+  // Participant is the Participant who is sending this response
+  Participant participant = 3;
+}
+
+// This message is sent to participants as response to the "GetResults" RPC
+// It contains an array of Participants with their latest scores
+message Result {
+  repeated Participant participants = 1;
+}
+
+// This message is sent as response to the "Register" RPC by the participants
+// node_id is the node id of the participant as recognized by the quizmaster
+message RegisterResponse {
+  uint32 node_id = 2;
+}

@@ -1,0 +1,11 @@
+*.swp
+*.swo
+.vscode
+
+# truffle build directory
+build/
+
+# Dependency directory
+package-lock.json
+node_modules/
+dist/

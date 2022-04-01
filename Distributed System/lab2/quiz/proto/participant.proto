@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "dat520/lab2/quiz/proto";
+
+import "google/protobuf/empty.proto";
+import "proto/base.proto";
+
+service ParticipantService {
+  // Register RPC is called by the participants to register with the quizmaster
+  rpc Register(Participant) returns (RegisterResponse) {}
+
+  // MarkReady RPC is called by the participants to tell the quizmaster
+  // that it is ready to received the questions
+  rpc MarkReady(RegisterResponse) returns (google.protobuf.Empty) {}
+
+  // GetResults RPC is called by the participants to get the results of
+  // the participants
+  rpc GetResults(google.protobuf.Empty) returns (Result) {}
+}

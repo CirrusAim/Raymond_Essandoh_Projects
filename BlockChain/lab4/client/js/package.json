@@ -1,0 +1,48 @@
+{
+  "name": "wallet_jsdapp",
+  "version": "0.0.1",
+  "description": "Wallet DApp js frontend",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "/test"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "serve": "webpack serve",
+    "dev": "webpack serve --client-logging verbose"
+  },
+  "author": "Rodrigo Q. Saramago",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
+    "@popperjs/core": "^2.10.2",
+    "bootstrap": "^5.1.3",
+    "font-awesome": "^4.7.0",
+    "stream-browserify": "^3.0.0",
+    "web3": "^1.6.0",
+    "web3-utils": "^1.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "assert": "^2.0.0",
+    "autoprefixer": "^10.3.7",
+    "babel-loader": "^8.2.2",
+    "buffer": "^6.0.3",
+    "copy-webpack-plugin": "^9.0.1",
+    "crypto-browserify": "^3.12.0",
+    "css-loader": "^6.4.0",
+    "https-browserify": "^1.0.0",
+    "node-sass": "^6.0.1",
+    "os-browserify": "^0.3.0",
+    "postcss-loader": "^6.2.0",
+    "process": "^0.11.10",
+    "sass-loader": "^12.2.0",
+    "stream-http": "^3.2.0",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
+  }
+}

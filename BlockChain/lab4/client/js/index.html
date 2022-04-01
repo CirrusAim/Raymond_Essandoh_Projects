@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Wallet Dapp</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Ethereum Accounts</h1>
+        <div id="accounts">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Account</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="accountList"></tbody>
+                    <!-- the table body is created dynamically based on the available ethereum addresses -->
+                </table>
+            </div>
+        </div>
+        <div class="app">
+            <h1 class="text-center mt-2 mb-2">Wallet DApp</h1>
+            <div id="notificationPlaceholder" class="text-center"></div>
+
+            <div class="card col-md-auto">
+                <div class="card-header text-muted">
+                    <span> Selected account: <span id="selectedAccount"></span> </span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center">You have <strong id="walletBalance">loading...</strong> wei in your
+                        wallet.</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <span> Contract owner: <span id="ownerAccount"></span> </span>
+                </div>
+            </div>
+
+            <div class="d-grid mt-3 gap-3">
+                <div class="row">
+                    <label for="depositAmount" class="form-label fs-4">Deposit</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="depositAmount" placeholder="amount in wei" />
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-outline-primary" onclick="App.deposit()">Deposit</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="withdrawAmount" class="form-label fs-4">Withdraw</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="withdrawAmount" placeholder="amount in wei" />
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-outline-primary" onclick="App.withdraw()">Withdraw</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="transferAmount" class="form-label fs-4">Transfer</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="transferAmount" placeholder="amount in wei" />
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="transferRecipient"
+                            placeholder="address of the recipient" />
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-outline-primary" onclick="App.transfer()">Transfer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p> <strong>Note:</strong> 1 ether == 1000000000000000000 wei </p>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

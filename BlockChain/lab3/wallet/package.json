@@ -1,0 +1,47 @@
+{
+  "name": "wallet",
+  "version": "0.0.1",
+  "description": "MyWallet Contract",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "/contracts/**/*.sol",
+    "/build/contracts/*.json",
+    "/migrations",
+    "!/contracts/mocks",
+    "/test"
+  ],
+  "scripts": {
+    "compile": "truffle compile",
+    "console": "truffle console",
+    "migrate": "truffle migrate --reset",
+    "ganache-cli": "ganache-cli --deterministic --networkId 5777 --host 127.0.0.1 --port 7545",
+    "migrate:ganache": "truffle migrate --reset --network ganache",
+    "test": "truffle test",
+    "test:ganache": "truffle test --network ganache",
+    "lint": "npm run lint:js && npm run lint:sol",
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
+    "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\""
+  },
+  "author": "Rodrigo Q. Saramago",
+  "license": "GPL-3.0-only",
+  "dependencies": {},
+  "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.15",
+    "@openzeppelin/contracts": "^4.3.2",
+    "chai": "^4.3.4",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.1",
+    "eslint-plugin-mocha-no-only": "^1.1.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "ganache-cli": "^6.12.2",
+    "solhint": "^3.3.6",
+    "truffle": "^5.4.14",
+    "web3": "^1.6.0",
+    "web3-utils": "^1.6.0"
+  }
+}
