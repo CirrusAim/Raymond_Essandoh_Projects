@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "gorums.proto";
+
+package proto;
+
+option go_package = "dat520/lab6/gorumspaxos/fdproto";
+
+service FailureDetector {
+    rpc Ping(HeartBeat) returns (HeartBeat) {
+		option (gorums.quorumcall) = true;
+	}
+}
+
+message HeartBeat {
+    int32 id = 1;
+}

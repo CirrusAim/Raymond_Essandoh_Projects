@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+import "gorums.proto";
+
+package proto;
+
+option go_package = "dat520/lab6/gorumspaxos/proto";
+
+service MultiPaxos {
+	rpc Prepare(PrepareMsg) returns (PromiseMsg) {
+		option (gorums.quorumcall) = true;
+	}
+
+	rpc Accept(AcceptMsg) returns (LearnMsg) {
+		option (gorums.quorumcall) = true;
+	}
+
+	rpc Commit(LearnMsg) returns (Empty) {
+		option (gorums.quorumcall) = true;
+	}
+
+	rpc ClientHandle(Value) returns (Response) {
+		option (gorums.quorumcall) = true;
+	}
+}
+
+message Heartbeat {
+	uint32 id = 1;
+}
+
+message Slot {
+	uint32 id = 1;
+}
+
+message Round {
+	int32 id = 1;
+}
+
+message Transaction{
+	int32 Op=1;
+	int32 amount=2;
+}
+
+message TransactionResult{
+	uint32 accountNumber=1;
+	int32 balance=2;
+	string errorMessage=3;
+}
+
+message Value {
+	string clientID = 1;
+	uint32 clientSeq = 2;
+	bool isNoop = 3;
+	uint32 accountNumber=4;
+	Transaction tx=5;
+}
+
+message Response {
+	string clientID = 1;
+	uint32 clientSeq = 2;
+	TransactionResult txResult = 3;
+}
+
+message PrepareMsg {
+	Round crnd = 1;
+	Slot slot = 2;
+}
+
+message PromiseSlot {
+	Slot slot = 1;
+	Round vrnd = 2;
+	Value Value = 3;
+}
+
+// PromiseMsg is the reply from an Acceptor to the Proposer in response to a PrepareMsg.
+// The Acceptor will only respond if the PrepareMsg.rnd > Acceptor.rnd.
+message PromiseMsg {
+	Round rnd = 1;
+	repeated PromiseSlot slots = 2;
+	int32 fromNode = 3;
+}
+
+// AcceptMsg is sent by the Proposer, asking the Acceptors to lock-in the value, val.
+// If AcceptMsg.rnd < Acceptor.rnd, the message will be ignored.
+message AcceptMsg {
+	Round rnd = 1;
+	Slot slot = 2;
+	Value val = 3;
+}
+
+// LearnMsg is sent by an Acceptor to the Proposer, if the Acceptor agreed to lock-in the value, val.
+// The LearnMsg is also sent by the Proposer in a Commit.
+message LearnMsg {
+	Round rnd = 1;
+	Value val = 2;
+	Slot slot = 3;
+	int32 fromNode = 4;
+}
+
+// DecidedValue is sent by an Acceptor to the Learner
+message DecidedValue {
+	Slot slot = 1;
+	Value val = 2;
+}
+
+message Empty {}
